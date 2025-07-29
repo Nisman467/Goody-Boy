@@ -1,3 +1,7 @@
+//This code in used to generate the random passwrod for any length upto 1000
+
+//Enjoy your meal...!!!
+
 #include<iostream>
 #include<conio.h>
 #include<cstring>

@@ -1,4 +1,103 @@
-Hello
-git is very good.
-git is very very good.
-Im Goody Boy.
+#include<iostream>
+#include<conio.h>
+#include<cstring>
+#include<cstdlib>
+#include<ctime>
+using namespace std;
+
+class Generator
+{
+	char uppercase[27];
+	char lowercase[27];
+	char digit[11];
+	char symbol[9];
+	
+	public:
+		void password_Generator(char *password, char useUpCase, char useLowCase, char useDigit, char useSymbol, int length)
+		{
+			char clonePass[1000]="\0";
+			int randValue;
+			
+			if(useUpCase =='Y' || useUpCase =='y')
+			{
+				strcpy(uppercase,"ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+				strcat(clonePass,uppercase);			//concatenation of a required words
+			}
+			if(useLowCase =='Y' || useLowCase =='y')
+			{
+				strcpy(lowercase,"abcdefghijklmnopqrstuvwxyz");
+				strcat(clonePass,lowercase);			//concatenation of a required words
+			}
+			if(useDigit =='Y' || useDigit =='y')
+			{
+				strcpy(digit,"0123456789");
+				strcat(clonePass,digit);			//concatenation of a required words
+			}
+			if(useSymbol =='Y' || useSymbol =='y')
+			{
+				strcpy(symbol,"!@#$%^&_");	
+				strcat(clonePass,symbol);			//concatenation of a required words
+			}
+				
+		
+			
+			//generation of password
+			for(int i=0; i<length; i++)
+			{
+				randValue =rand() % strlen(clonePass);
+				password[i]= clonePass[randValue];
+			}
+			
+			password[length]='\0';
+		}
+};
+
+int main()
+{
+	srand(time(0));
+	Generator gp;
+	int length;
+	int choice;
+	
+	do {
+		//meanu design
+		cout<<"\n\n---------Choose the option:------------"<<endl
+			<<"1. PassWord Generation"<<endl
+			<<"2. Exit "<<endl
+			<<"Enter the option number: ";
+		cin>>choice;
+	    switch (choice) 
+		{
+	        case 1: 
+			{
+				
+				//Length determination
+	            int length;
+	            cout << "Enter the length of the password: ";
+	            cin >> length;
+				
+				//password generator called
+	            char password[100];  // Use fixed-size or dynamically allocate
+	            gp.password_Generator(password, 'y', 'y', 'y', 'y', length);
+	
+	
+	
+	            cout << "The generated password: " << password << endl;
+	            cout<<"--Press any key to so Menu Bar--";
+				getch();
+	            break;
+	        }
+	
+	        case 2:
+	            cout << "Exiting the program..." << endl;
+	            break;
+	
+	        default:
+	            cout << "You entered the wrong option number." << endl;
+	            break;
+	    }
+	
+	} while (choice != 2);
+
+	return 0;
+}
